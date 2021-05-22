@@ -21,10 +21,10 @@ class base:
     def request(self, api_name, method="GET", **kwargs):
         url = f"{self.host_name}/{api_name}"
 
-        headers = kwargs.get("headers", {})
-        headers["content-type"] = "application/x-www-form-urlencoded"
-        headers["accept-type"] = "application/json, text/javascript, */*; q=0.01"
-        kwargs["headers"] = headers
+        # headers = kwargs.get("headers", {})
+        # headers["content-type"] = "application/x-www-form-urlencoded"
+        # headers["accept-type"] = "application/json, text/javascript, */*; q=0.01"
+        # kwargs["headers"] = headers
 
         params = kwargs.get("params", {})
         if self.token:

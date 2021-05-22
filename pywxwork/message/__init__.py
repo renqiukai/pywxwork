@@ -1,5 +1,3 @@
-from requests import api
-from requests.models import Response
 from ..base import base
 from loguru import logger
 
@@ -68,7 +66,7 @@ class message(base):
         response = self.send(
             agentid=agentid,
             msgtype="image",
-            send_content={"image": media_id},
+            send_content={"media_id": media_id},
             touser=touser,
             toparty=toparty,
             totag=totag,
@@ -85,7 +83,7 @@ class message(base):
         response = self.send(
             agentid=agentid,
             msgtype="voice",
-            send_content={"voice": media_id},
+            send_content={"media_id": media_id},
             touser=touser,
             toparty=toparty,
             totag=totag,
@@ -102,7 +100,7 @@ class message(base):
         response = self.send(
             agentid=agentid,
             msgtype="video",
-            send_content={"video": media_id},
+            send_content={"media_id": media_id},
             touser=touser,
             toparty=toparty,
             totag=totag,
@@ -119,7 +117,7 @@ class message(base):
         response = self.send(
             agentid=agentid,
             msgtype="file",
-            send_content={"file": media_id},
+            send_content={"media_id": media_id},
             touser=touser,
             toparty=toparty,
             totag=totag,
@@ -341,7 +339,7 @@ class message(base):
 
         Returns:
             [type]: [description]
-        """        
+        """
         api_name = "message/update_taskcard"
         data = {
             "userids": userids,
