@@ -27,48 +27,102 @@ class tag(base):
         logger.debug(response)
         return response
 
-    def update(self, tagid: int, tagname: str):
-        api_name = "department/update"
+    def update(self, tagid: int, tagname: str) -> dict:
+        """更新标签名字
+
+        Args:
+            tagid (int): 标签ID
+            tagname (str): 标签名称，长度限制为32个字（汉字或英文字母），标签不可与其他标签重名。
+
+        Returns:
+            dict: 
+        """
+        api_name = "tag/update"
         data = {
-            "id": id,
+            "tagid": tagid,
+            "tagname": tagname
         }
-        if name:
-            data["name"] = name
-        if name_en:
-            data["name_en"] = name_en
-        if parentid:
-            data["parentid"] = parentid
-        if order:
-            data["order"] = order
         response = self.request(
             api_name=api_name, method="post", json=data)
         logger.debug(response)
         return response
 
-    def delete(self, id):
-        api_name = "department/delete"
+    def delete(self, tagid: int):
+        api_name = "tag/delete"
         params = {
-            "id": id
+            "tagid": tagid
         }
         response = self.request(
             api_name=api_name, method="get", params=params)
         logger.debug(response)
         return response
 
-    def list(self, id: int = None):
-        """获取部门列表
+    def get(self, tagid: int):
+        """获取标签成员
 
         Args:
-            id (int, optional): 部门id。获取指定部门及其下的子部门（以及及子部门的子部门等等，递归）。 如果不填，默认获取全量组织架构. Defaults to None.
-
-        Returns:
-            [type]: [description]
+            tagid (int): 标签ID
         """
-        api_name = "department/list"
+        api_name = "tag/get"
         params = {
-            "id": id,
+            "tagid": tagid
         }
         response = self.request(
             api_name=api_name, method="get", params=params)
+        logger.debug(response)
+        return response
+
+    def addtagusers(self, tagid: int, userlist: list = [], partylist: list = []) -> dict:
+        """增加标签成员
+
+        Args:
+            tagid (int): 标签ID
+            userlist (list, optional): 企业成员ID列表，注意：userlist、partylist不能同时为空，单次请求个数不超过1000. Defaults to [].
+            partylist (list, optional): 企业部门ID列表，注意：userlist、partylist不能同时为空，单次请求个数不超过100. Defaults to [].
+
+        Returns:
+            dict: 
+        """
+        api_name = "tag/addtagusers"
+        data = {
+            "tagid": tagid,
+        }
+        if userlist:
+            data["userlist"] = userlist
+        if partylist:
+            data["partylist"] = partylist
+        response = self.request(
+            api_name=api_name, method="post", json=data)
+        logger.debug(response)
+        return response
+
+    def deltagusers(self, tagid: int, userlist: list = [], partylist: list = []) -> dict:
+        """删除标签成员
+
+        Args:
+            tagid (int): 标签ID
+            userlist (list, optional): 企业成员ID列表，注意：userlist、partylist不能同时为空，单次请求个数不超过1000. Defaults to [].
+            partylist (list, optional): 企业部门ID列表，注意：userlist、partylist不能同时为空，单次请求个数不超过100. Defaults to [].
+
+        Returns:
+            dict: 
+        """
+        api_name = "tag/deltagusers"
+        data = {
+            "tagid": tagid,
+        }
+        if userlist:
+            data["userlist"] = userlist
+        if partylist:
+            data["partylist"] = partylist
+        response = self.request(
+            api_name=api_name, method="post", json=data)
+        logger.debug(response)
+        return response
+
+    def list(self):
+        api_name = "tag/list"
+        response = self.request(
+            api_name=api_name, method="get")
         logger.debug(response)
         return response

@@ -7,8 +7,8 @@
     - [get user list](#get-user-list)
 
 # pywxwork
-python wxwork server api
-version==1.0.1
+- python wxwork server api
+- version==1.0.1
 
 
 # 企微python接口
