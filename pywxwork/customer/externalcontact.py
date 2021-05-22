@@ -1,5 +1,5 @@
 from loguru import logger
-from .base import base
+from ..base import base
 
 
 class externalContact(base):

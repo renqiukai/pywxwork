@@ -1,15 +1,9 @@
 from loguru import logger
-from .base import base
+from ..base import base
 
-
-class contact(base):
-    def __init__(self, **kwargs) -> None:
-        super().__init__(**kwargs)
-
-
-class user(contact):
-    def __init__(self, **kwargs) -> None:
-        super().__init__(**kwargs)
+class user(base):
+    def __init__(self, token) -> None:
+        super().__init__(token)
 
     def create(self, data):
         api_name = "user/create"
@@ -56,9 +50,15 @@ class user(contact):
         return response
 
     def simplelist(self, department_id, fetch_child=0):
-        # get department member.
-        # fetch_child
-        # 是否递归获取子部门下面的成员：1-递归获取，0-只获取本部门
+        """获取部门成员
+
+        Args:
+            department_id (int): department id
+            fetch_child (int, optional): 是否递归获取子部门下面的成员：1-递归获取，0-只获取本部门. Defaults to 0.
+
+        Returns:
+            dict: member
+        """        
         api_name = "user/simplelist"
         params = {
             "department_id": department_id,

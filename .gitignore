@@ -127,4 +127,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-text*.*
+self_test.py
