@@ -1,3 +1,5 @@
+from requests import api
+from requests.models import Response
 from ..base import base
 from loguru import logger
 
@@ -256,15 +258,15 @@ class message(base):
                                 safe: int = 0, enable_id_trans=0, enable_duplicate_check: int = 0, duplicate_check_interval: int = 1800,
                                 ):
         """小程序通知消息
-
+        https://open.work.weixin.qq.com/api/doc/90000/90135/90236
         Args:
             agentid (int): [description]
             send_content (dict): {
-                "appid": "wx123123123123123",
-                "page": "pages/index?userid=zhangsan&orderid=123123123",
+                "appid": "wx02cc6b25dfe05e5c",
+                "page": "pages/index",
                 "title": "会议室预订成功通知",
                 "description": "4月27日 16:16",
-                "emphasis_first_item": true,
+                "emphasis_first_item": # True, 是否放大第一个content_item
                 "content_item": [
                     {
                         "key": "会议室",
@@ -306,6 +308,51 @@ class message(base):
             enable_id_trans=enable_id_trans,
             enable_duplicate_check=enable_duplicate_check,
             duplicate_check_interval=duplicate_check_interval,
+        )
+        logger.debug(response)
+        return response
+
+    def send_interactive_taskcard(self, agentid: int, send_content: dict, touser: list = [], toparty: list = [], totag: list = [],
+                                  safe: int = 0, enable_id_trans=0, enable_duplicate_check: int = 0, duplicate_check_interval: int = 1800,
+                                  ):
+        response = self.send(
+            agentid=agentid,
+            msgtype="interactive_taskcard",
+            send_content=send_content,
+            touser=touser,
+            toparty=toparty,
+            totag=totag,
+            safe=safe,
+            enable_id_trans=enable_id_trans,
+            enable_duplicate_check=enable_duplicate_check,
+            duplicate_check_interval=duplicate_check_interval,
+        )
+        logger.debug(response)
+        return response
+
+    def update_taskcard(self, userids: list, agentid: int, task_id: str, replace_name: str):
+        """更新任务卡片消息状态
+
+        Args:
+            userids (list): 企业的成员ID列表（消息接收者，最多支持1000个）。
+            agentid (int): 应用的agentid
+            task_id (str): 发送任务卡片消息时指定的task_id
+            replace_name (str): 设置替换文案，最长支持18个字节，超过则截断
+
+        Returns:
+            [type]: [description]
+        """        
+        api_name = "message/update_taskcard"
+        data = {
+            "userids": userids,
+            "agentid": agentid,
+            "task_id": task_id,
+            "replace_name": replace_name
+        }
+        response = self.request(
+            api_name=api_name,
+            method="POST",
+            json=data,
         )
         logger.debug(response)
         return response
