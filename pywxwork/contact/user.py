@@ -1,6 +1,7 @@
 from loguru import logger
 from ..base import base
 
+
 class user(base):
     def __init__(self, token) -> None:
         super().__init__(token)
@@ -58,7 +59,7 @@ class user(base):
 
         Returns:
             dict: member
-        """        
+        """
         api_name = "user/simplelist"
         params = {
             "department_id": department_id,
@@ -110,5 +111,72 @@ class user(base):
         }
         response = self.request(
             api_name=api_name, method="get", params=params)
+        logger.debug(response)
+        return response
+
+    def authsucc(self, userid):
+        api_name = "user/authsucc"
+        params = {
+            "userid": userid
+        }
+        response = self.request(
+            api_name=api_name, method="get", params=params)
+        logger.debug(response)
+        return response
+
+    def invite(self, user_list: list = [], party_list: list = [], tag_list: list = []):
+        """邀请成员
+        企业可通过接口批量邀请成员使用企业微信，邀请后将通过短信或邮件下发通知。
+        https://open.work.weixin.qq.com/api/doc/90000/90135/90975
+
+
+        Args:
+            user_list (list, optional): 成员ID列表, 最多支持1000个。. Defaults to [].
+            party_list (list, optional): 部门ID列表，最多支持100个。. Defaults to [].
+            tag_list (list, optional): 标签ID列表，最多支持100个。. Defaults to [].
+
+        Returns:
+            [type]: [description]
+        """
+        api_name = "batch/invite"
+        data = {}
+        if user_list:
+            data["user"] = user_list
+        if party_list:
+            data["party"] = party_list
+        if tag_list:
+            data["tag"] = tag_list
+
+        response = self.request(
+            api_name=api_name, method="post", json=data)
+        logger.debug(response)
+        return response
+
+    def get_join_qrcode(self, size_type: int = None):
+        """获取加入企业二维码
+
+        Args:
+            size_type (int, optional): qrcode尺寸类型，1: 171 x 171; 2: 399 x 399; 3: 741 x 741; 4: 2052 x 2052. Defaults to None.
+
+        Returns:
+            [type]: [description]
+        """
+        api_name = "corp/get_join_qrcode"
+        if size_type:
+            params = {
+                "size_type": size_type
+            }
+        response = self.request(
+            api_name=api_name, method="get", params=params)
+        logger.debug(response)
+        return response
+
+    def get_active_stat(self, date: str):
+        api_name = "user/get_active_stat"
+        data = {
+            "date": date
+        }
+        response = self.request(
+            api_name=api_name, method="post", json=data)
         logger.debug(response)
         return response
