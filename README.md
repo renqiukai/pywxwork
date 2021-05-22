@@ -1,9 +1,14 @@
 - [pywxwork](#pywxwork)
 - [企微python接口](#企微python接口)
 - [框架结构](#框架结构)
+- [how to use](#how-to-use)
+    - [install pywxwork](#install-pywxwork)
+    - [get token](#get-token)
+    - [get user list](#get-user-list)
 
 # pywxwork
 python wxwork server api
+version==1.0.1
 
 
 # 企微python接口
@@ -33,3 +38,31 @@ python wxwork server api
 - [ ] 家校沟通
 - [ ] 家校应用
 - [ ] 政民沟通
+
+
+# how to use
+### install pywxwork
+`pip install pywxwork`
+
+### get token
+
+```python
+from pywxwork.token import token
+
+corpid = "wxaadfasdfasdfasdfas"
+corpsecret = "asdfasdfasdfasfasdfasdfasdf"
+
+t = token(corpid=corpid, corpsecret=corpsecret)
+t.token
+```
+### get user list
+
+```python
+from pywxwork.contact.user import user
+
+u = user(token)
+response = u.list(department_id=1, fetch_child=1)
+user_list = response.get("userlist")
+for row in user_list:
+  print(row)
+```
