@@ -128,4 +128,4 @@ dmypy.json
 # Pyre type checker
 .pyre/
 self_test.py
-publish.bat
+test_*.py
