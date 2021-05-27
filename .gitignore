@@ -129,3 +129,4 @@ dmypy.json
 .pyre/
 self_test.py
 test_*.py
+.vscode/
