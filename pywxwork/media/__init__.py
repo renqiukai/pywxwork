@@ -20,3 +20,14 @@ class media(base):
         )
         logger.debug(response)
         return response
+
+    def uploadimg(self, file: str):
+        api_name = "media/uploadimg"
+        files = {"image": open(file, "rb")}
+        response = self.request(
+            api_name=api_name,
+            method="POST",
+            files=files
+        )
+        logger.debug(response)
+        return response
