@@ -1,13 +1,21 @@
+- [版本更新](#版本更新)
 - [pywxwork](#pywxwork)
 - [企微python接口](#企微python接口)
 - [框架结构](#框架结构)
+  - [|未完成|政民沟通||](#未完成政民沟通)
 - [how to use](#how-to-use)
     - [install pywxwork](#install-pywxwork)
     - [get token](#get-token)
     - [get user list](#get-user-list)
 
+
+# 版本更新
+|ver|desc|date|
+|----|----|----|
+|1.0.4|完成电子发票的接口|20210530|
+
 # pywxwork
-- python wxwork server api
+- python wxwork server api(企业微信自建应用服务端)
 - version==1.0.1
 
 
@@ -36,7 +44,7 @@
 |未完成|企业支付||
 |未完成|企业互联||
 |未完成|会话内容存档||
-|未完成|电子发票||
+|已完成|电子发票|invoice|
 |未完成|家校沟通||
 |未完成|家校应用||
 |未完成|政民沟通||

@@ -3,8 +3,8 @@ from ..base import base
 
 
 class invoice(base):
-    def __init__(self, **kwargs) -> None:
-        super().__init__(**kwargs)
+    def __init__(self, token: str):
+        super().__init__(token)
 
     def get_invoice_info(self, card_id, encrypt_code):
         api_name = "card/invoice/reimburse/getinvoiceinfo"
