@@ -3,7 +3,6 @@
 - [企微python接口](#企微python接口)
 - [框架结构](#框架结构)
     - [接口列表](#接口列表)
-  - [|未完成|政民沟通||](#未完成政民沟通)
 - [how to use](#how-to-use)
     - [install pywxwork](#install-pywxwork)
     - [get token](#get-token)
@@ -51,7 +50,7 @@
 |未完成|家校沟通||
 |未完成|家校应用||
 |未完成|政民沟通||
-----
+
 
 
 
