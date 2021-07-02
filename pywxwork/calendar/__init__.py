@@ -7,7 +7,7 @@ class calendar(base):
     def __init__(self, token: str):
         super().__init__(token)
 
-    def add(self, organizer, summary, color, description="", shares=[], readonly=1, set_as_default=0, agentid=None):
+    def add(self, organizer, summary, color="#0000FF", description="", shares=[], readonly=1, set_as_default=0, agentid=None):
         """添加日历
         https://open.work.weixin.qq.com/api/doc/90000/90135/93647
 
@@ -39,15 +39,7 @@ class calendar(base):
                 "summary": summary,
                 "color": color,
                 "description": description,
-                "shares": [
-                    {
-                        "userid": "userid2"
-                    },
-                    {
-                        "userid": "userid3",
-                        "readonly": 1
-                    }
-                ]
+                "shares": shares,
             },
         }
         if agentid:
@@ -60,60 +52,7 @@ class calendar(base):
         logger.debug(response)
         return response
 
-    def add(self, organizer, summary, color, description="", shares=[], readonly=1, set_as_default=0, agentid=None):
-        """添加日历
-        https://open.work.weixin.qq.com/api/doc/90000/90135/93647
-
-        Args:
-            organizer (str): 指定的组织者userid。注意该字段指定后不可更新
-            summary (str): 日历标题。1 ~ 128 字符
-            color (str): 日历在终端上显示的颜色，RGB颜色编码16进制表示，例如：”#0000FF” 表示纯蓝色
-            description (str, optional): 日历描述。. Defaults to "".
-            shares (list, optional): 日历共享成员列表。最多2000人. Defaults to [].
-                {
-                    "userid" : "userid2",
-                    "readonly" : 1
-                }
-            readonly (int, optional): [description]. Defaults to 1.
-            set_as_default (int, optional): 是否将该日历设置为组织者的默认日历。
-                                            0-否；1-是。默认为0，即不设为默认日历
-                                            第三方应用不支持使用该参数. Defaults to 0.
-            agentid ([type], optional): 授权方安装的应用agentid。仅旧的第三方多应用套件需要填此参数. Defaults to None.
-
-        Returns:
-            dict: 
-        """
-        api_name = "oa/calendar/add"
-        data = {
-            "calendar": {
-                "organizer": organizer,
-                "readonly": readonly,
-                "set_as_default": set_as_default,
-                "summary": summary,
-                "color": color,
-                "description": description,
-                "shares": [
-                    {
-                        "userid": "userid2"
-                    },
-                    {
-                        "userid": "userid3",
-                        "readonly": 1
-                    }
-                ]
-            },
-        }
-        if agentid:
-            data["agentid"] = agentid
-        response = self.request(
-            api_name=api_name,
-            method="post",
-            json=data,
-        )
-        logger.debug(response)
-        return response
-
-    def update(self, cal_id, organizer, summary, color, description="", shares=[], readonly=1, set_as_default=0):
+    def update(self, cal_id, organizer, summary, color="#0000FF", description="", shares=[], readonly=1, set_as_default=0):
         """修改日历
         https://open.work.weixin.qq.com/api/doc/90000/90135/93647
 
@@ -178,7 +117,7 @@ class calendar(base):
         logger.debug(response)
         return response
 
-    def del(self, cal_id):
+    def delete(self, cal_id):
         """删除日历，可以同时请求多个
 
         Args:
@@ -328,7 +267,7 @@ class schedule(base):
         logger.debug(response)
         return response
 
-    def del(self, schedule_id=[]):
+    def delete(self, schedule_id=[]):
         """取消日程
 
         Args:
