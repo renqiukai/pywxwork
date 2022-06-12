@@ -6,12 +6,13 @@ class media(base):
     def __init__(self, token: str):
         super().__init__(token)
 
-    def upload(self, type: str, file: str):
+    def upload(self, type: str, file: str, filename: str = "data.xlsx"):
         api_name = "media/upload"
         params = {
             "type": type
         }
-        files = {type: open(file, "rb")}
+        # files = {type: open(file, "rb")}
+        files = {"file": (f"{filename}.xlsx", open(file, "rb"))}
         response = self.request(
             api_name=api_name,
             method="POST",
