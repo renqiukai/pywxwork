@@ -190,3 +190,25 @@ class user(base):
             api_name=api_name, method="post", json=data)
         logger.debug(response)
         return response
+
+    def get_userid_by_email(self, email: str, email_type: str = 1):
+        api_name = "user/get_userid_by_email"
+        data = {
+            "email": email,
+            "email_type": email_type,
+        }
+        response = self.request(
+            api_name=api_name, method="post", json=data)
+        logger.debug(response)
+        return response
+
+    def list_id(self, cursor: str = None, limit: int = 10000):
+        api_name = "user/list_id"
+        data = {
+            "cursor": cursor,
+            "limit": limit,
+        }
+        response = self.request(
+            api_name=api_name, method="post", json=data)
+        logger.debug(response)
+        return response
