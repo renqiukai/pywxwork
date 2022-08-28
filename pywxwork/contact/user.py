@@ -180,3 +180,13 @@ class user(base):
             api_name=api_name, method="post", json=data)
         logger.debug(response)
         return response
+
+    def getuserid(self, mobile: str):
+        api_name = "user/getuserid"
+        data = {
+            "mobile": mobile
+        }
+        response = self.request(
+            api_name=api_name, method="post", json=data)
+        logger.debug(response)
+        return response
