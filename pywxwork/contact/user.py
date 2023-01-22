@@ -114,6 +114,16 @@ class user(base):
         logger.debug(response)
         return response
 
+    def get_user_detail(self, user_ticket):
+        api_name = "auth/getuserdetail"
+        params = {
+            "user_ticket": user_ticket
+        }
+        response = self.request(
+            api_name=api_name, method="post", json=params)
+        logger.debug(response)
+        return response
+
     def authsucc(self, userid):
         api_name = "user/authsucc"
         params = {
