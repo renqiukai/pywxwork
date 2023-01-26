@@ -22,12 +22,17 @@ class department(base):
             [type]: [description]
         """
         api_name = "department/create"
-        response = self.request(
-            api_name=api_name, method="post", json=data)
-        logger.debug(response)
+        response = self.request(api_name=api_name, method="post", json=data)
         return response
 
-    def update(self, id: int, name: str = None, name_en: str = None, parentid: int = None, order: int = None):
+    def update(
+        self,
+        id: int,
+        name: str = None,
+        name_en: str = None,
+        parentid: int = None,
+        order: int = None,
+    ):
         """更新部门
 
         Args:
@@ -52,19 +57,13 @@ class department(base):
             data["parentid"] = parentid
         if order:
             data["order"] = order
-        response = self.request(
-            api_name=api_name, method="post", json=data)
-        logger.debug(response)
+        response = self.request(api_name=api_name, method="post", json=data)
         return response
 
     def delete(self, id):
         api_name = "department/delete"
-        params = {
-            "id": id
-        }
-        response = self.request(
-            api_name=api_name, method="get", params=params)
-        logger.debug(response)
+        params = {"id": id}
+        response = self.request(api_name=api_name, method="get", params=params)
         return response
 
     def list(self, id: int = None):
@@ -80,7 +79,5 @@ class department(base):
         params = {
             "id": id,
         }
-        response = self.request(
-            api_name=api_name, method="get", params=params)
-        logger.debug(response)
+        response = self.request(api_name=api_name, method="get", params=params)
         return response

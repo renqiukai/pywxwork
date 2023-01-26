@@ -1,16 +1,16 @@
-'''
+"""
 @Author: Rqk
 @Date: 2021-05-22
 @Description: 
-'''
+"""
 
 from setuptools import setup, find_packages
 
-version = "1.0.6"
+version = "1.0.7"
 setup(
     name="pywxwork",
     version=version,
-    keywords=["wxwork", "workwechat", ],
+    keywords=["wxwork", "workwechat",],
     description="",
     long_description="",
     license="MIT Licence",
@@ -20,5 +20,5 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     platforms="any",
-    install_requires=["requests", "loguru"]
+    install_requires=["requests", "loguru"],
 )

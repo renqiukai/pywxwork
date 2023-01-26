@@ -3,11 +3,20 @@ from loguru import logger
 
 
 class calendar(base):
-
     def __init__(self, token: str):
         super().__init__(token)
 
-    def add(self, organizer, summary, color="#0000FF", description="", shares=[], readonly=1, set_as_default=0, agentid=None):
+    def add(
+        self,
+        organizer,
+        summary,
+        color="#0000FF",
+        description="",
+        shares=[],
+        readonly=1,
+        set_as_default=0,
+        agentid=None,
+    ):
         """添加日历
         https://open.work.weixin.qq.com/api/doc/90000/90135/93647
 
@@ -44,15 +53,20 @@ class calendar(base):
         }
         if agentid:
             data["agentid"] = agentid
-        response = self.request(
-            api_name=api_name,
-            method="post",
-            json=data,
-        )
-        logger.debug(response)
+        response = self.request(api_name=api_name, method="post", json=data,)
         return response
 
-    def update(self, cal_id, organizer, summary, color="#0000FF", description="", shares=[], readonly=1, set_as_default=0):
+    def update(
+        self,
+        cal_id,
+        organizer,
+        summary,
+        color="#0000FF",
+        description="",
+        shares=[],
+        readonly=1,
+        set_as_default=0,
+    ):
         """修改日历
         https://open.work.weixin.qq.com/api/doc/90000/90135/93647
 
@@ -88,12 +102,7 @@ class calendar(base):
                 "shares": shares,
             },
         }
-        response = self.request(
-            api_name=api_name,
-            method="post",
-            json=data,
-        )
-        logger.debug(response)
+        response = self.request(api_name=api_name, method="post", json=data,)
         return response
 
     def get(self, cal_id_list=[]):
@@ -106,15 +115,8 @@ class calendar(base):
         }
         """
         api_name = "oa/calendar/get"
-        data = {
-            "cal_id_list": cal_id_list
-        }
-        response = self.request(
-            api_name=api_name,
-            method="post",
-            json=data,
-        )
-        logger.debug(response)
+        data = {"cal_id_list": cal_id_list}
+        response = self.request(api_name=api_name, method="post", json=data,)
         return response
 
     def delete(self, cal_id):
@@ -127,15 +129,8 @@ class calendar(base):
         }
         """
         api_name = "oa/calendar/del"
-        data = {
-            "cal_id": cal_id
-        }
-        response = self.request(
-            api_name=api_name,
-            method="post",
-            json=data,
-        )
-        logger.debug(response)
+        data = {"cal_id": cal_id}
+        response = self.request(api_name=api_name, method="post", json=data,)
         return response
 
 
@@ -143,10 +138,28 @@ class schedule(base):
     def __init__(self, token: str):
         super().__init__(token)
 
-    def add(self, organizer: str, summary: str, cal_id: str, location: str,
-            is_remind=1, remind_before_event_secs=3600,
-            repeat_until=0, is_repeat=1, repeat_type=7, is_custom_repeat=0, repeat_interval=7, repeat_day_of_week=[1, 7], repeat_day_of_month=[1, 31], timezone=8,
-            attendees=[], start_time: int = None, end_time: int = None, description="", agentid: int = None):
+    def add(
+        self,
+        organizer: str,
+        summary: str,
+        cal_id: str,
+        location: str,
+        is_remind=1,
+        remind_before_event_secs=3600,
+        repeat_until=0,
+        is_repeat=1,
+        repeat_type=7,
+        is_custom_repeat=0,
+        repeat_interval=7,
+        repeat_day_of_week=[1, 7],
+        repeat_day_of_month=[1, 31],
+        timezone=8,
+        attendees=[],
+        start_time: int = None,
+        end_time: int = None,
+        description="",
+        agentid: int = None,
+    ):
         """添加日程
         https://open.work.weixin.qq.com/api/doc/90000/90135/93648
 
@@ -182,26 +195,39 @@ class schedule(base):
                     "repeat_interval": repeat_interval,
                     "repeat_day_of_week": repeat_day_of_week,
                     "repeat_day_of_month": repeat_day_of_month,
-                    "timezone": timezone
+                    "timezone": timezone,
                 },
                 "location": location,
-                "cal_id": cal_id
+                "cal_id": cal_id,
             },
         }
         if agentid:
             data["agentid"] = agentid
-        response = self.request(
-            api_name=api_name,
-            method="post",
-            json=data,
-        )
-        logger.debug(response)
+        response = self.request(api_name=api_name, method="post", json=data,)
         return response
 
-    def update(self, organizer: str, schedule_id: str, summary: str, location: str,
-               is_remind=1, remind_before_event_secs=3600,
-               repeat_until=0, is_repeat=1, repeat_type=7, is_custom_repeat=0, repeat_interval=7, repeat_day_of_week=[1, 7], repeat_day_of_month=[1, 31], timezone=8,
-               attendees=[], start_time: int = None, end_time: int = None, description="", agentid: int = None):
+    def update(
+        self,
+        organizer: str,
+        schedule_id: str,
+        summary: str,
+        location: str,
+        is_remind=1,
+        remind_before_event_secs=3600,
+        repeat_until=0,
+        is_repeat=1,
+        repeat_type=7,
+        is_custom_repeat=0,
+        repeat_interval=7,
+        repeat_day_of_week=[1, 7],
+        repeat_day_of_month=[1, 31],
+        timezone=8,
+        attendees=[],
+        start_time: int = None,
+        end_time: int = None,
+        description="",
+        agentid: int = None,
+    ):
         """添加日程
         https://open.work.weixin.qq.com/api/doc/90000/90135/93648
 
@@ -233,17 +259,12 @@ class schedule(base):
                     "repeat_interval": repeat_interval,
                     "repeat_day_of_week": repeat_day_of_week,
                     "repeat_day_of_month": repeat_day_of_month,
-                    "timezone": timezone
+                    "timezone": timezone,
                 },
                 "location": location,
             },
         }
-        response = self.request(
-            api_name=api_name,
-            method="post",
-            json=data,
-        )
-        logger.debug(response)
+        response = self.request(api_name=api_name, method="post", json=data,)
         return response
 
     def get(self, schedule_id_list=[]):
@@ -256,15 +277,8 @@ class schedule(base):
         }
         """
         api_name = "oa/schedule/get"
-        data = {
-            "schedule_id_list": schedule_id_list
-        }
-        response = self.request(
-            api_name=api_name,
-            method="post",
-            json=data,
-        )
-        logger.debug(response)
+        data = {"schedule_id_list": schedule_id_list}
+        response = self.request(api_name=api_name, method="post", json=data,)
         return response
 
     def delete(self, schedule_id=[]):
@@ -277,15 +291,8 @@ class schedule(base):
         }
         """
         api_name = "oa/schedule/del"
-        data = {
-            "schedule_id": schedule_id
-        }
-        response = self.request(
-            api_name=api_name,
-            method="post",
-            json=data,
-        )
-        logger.debug(response)
+        data = {"schedule_id": schedule_id}
+        response = self.request(api_name=api_name, method="post", json=data,)
         return response
 
     def get_by_calendar(self, cal_id: str, offset=100, limit=1000):
@@ -300,15 +307,6 @@ class schedule(base):
         }
         """
         api_name = "oa/schedule/get_by_calendar"
-        data = {
-            "cal_id": cal_id,
-            "offset": offset,
-            "limit": limit
-        }
-        response = self.request(
-            api_name=api_name,
-            method="post",
-            json=data,
-        )
-        logger.debug(response)
+        data = {"cal_id": cal_id, "offset": offset, "limit": limit}
+        response = self.request(api_name=api_name, method="post", json=data,)
         return response

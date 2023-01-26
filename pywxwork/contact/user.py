@@ -8,46 +8,35 @@ class user(base):
 
     def create(self, data):
         api_name = "user/create"
-        response = self.request(
-            api_name=api_name, method="post", json=data)
-        logger.debug(response)
+        response = self.request(api_name=api_name, method="post", json=data)
+        
         return response
 
     def get(self, userid):
         api_name = "user/get"
-        params = {
-            "userid": userid
-        }
-        response = self.request(
-            api_name=api_name, method="get", params=params)
-        logger.debug(response)
+        params = {"userid": userid}
+        response = self.request(api_name=api_name, method="get", params=params)
+        
         return response
 
     def update(self, data):
         api_name = "user/update"
-        response = self.request(
-            api_name=api_name, method="post", json=data)
-        logger.debug(response)
+        response = self.request(api_name=api_name, method="post", json=data)
+        
         return response
 
     def delete(self, userid):
         api_name = "user/delete"
-        params = {
-            "userid": userid
-        }
-        response = self.request(
-            api_name=api_name, method="get", params=params)
-        logger.debug(response)
+        params = {"userid": userid}
+        response = self.request(api_name=api_name, method="get", params=params)
+        
         return response
 
     def batchdelete(self, useridlist):
         api_name = "user/batchdelete"
-        params = {
-            "useridlist": useridlist
-        }
-        response = self.request(
-            api_name=api_name, method="post", params=params)
-        logger.debug(response)
+        params = {"useridlist": useridlist}
+        response = self.request(api_name=api_name, method="post", params=params)
+        
         return response
 
     def simplelist(self, department_id, fetch_child=0):
@@ -61,13 +50,9 @@ class user(base):
             dict: member
         """
         api_name = "user/simplelist"
-        params = {
-            "department_id": department_id,
-            "fetch_child": fetch_child
-        }
-        response = self.request(
-            api_name=api_name, method="get", params=params)
-        logger.debug(response)
+        params = {"department_id": department_id, "fetch_child": fetch_child}
+        response = self.request(api_name=api_name, method="get", params=params)
+        
         return response
 
     def list(self, department_id, fetch_child=0):
@@ -75,63 +60,44 @@ class user(base):
         # fetch_child
         # 是否递归获取子部门下面的成员：1-递归获取，0-只获取本部门
         api_name = "user/list"
-        params = {
-            "department_id": department_id,
-            "fetch_child": fetch_child
-        }
-        response = self.request(
-            api_name=api_name, method="get", params=params)
-        logger.debug(response)
+        params = {"department_id": department_id, "fetch_child": fetch_child}
+        response = self.request(api_name=api_name, method="get", params=params)
+        
         return response
 
     def convert_to_openid(self, userid):
         api_name = "user/convert_to_openid"
-        params = {
-            "userid": userid
-        }
-        response = self.request(
-            api_name=api_name, method="post", params=params)
-        logger.debug(response)
+        params = {"userid": userid}
+        response = self.request(api_name=api_name, method="post", params=params)
+        
         return response
 
     def convert_to_userid(self, openid):
         api_name = "user/convert_to_userid"
-        params = {
-            "openid": openid
-        }
-        response = self.request(
-            api_name=api_name, method="post", params=params)
-        logger.debug(response)
+        params = {"openid": openid}
+        response = self.request(api_name=api_name, method="post", params=params)
+        
         return response
 
     def get_user_info(self, code):
         api_name = "user/getuserinfo"
-        params = {
-            "code": code
-        }
-        response = self.request(
-            api_name=api_name, method="get", params=params)
-        logger.debug(response)
+        params = {"code": code}
+        response = self.request(api_name=api_name, method="get", params=params)
+        
         return response
 
     def get_user_detail(self, user_ticket):
         api_name = "auth/getuserdetail"
-        params = {
-            "user_ticket": user_ticket
-        }
-        response = self.request(
-            api_name=api_name, method="post", json=params)
-        logger.debug(response)
+        params = {"user_ticket": user_ticket}
+        response = self.request(api_name=api_name, method="post", json=params)
+        
         return response
 
     def authsucc(self, userid):
         api_name = "user/authsucc"
-        params = {
-            "userid": userid
-        }
-        response = self.request(
-            api_name=api_name, method="get", params=params)
-        logger.debug(response)
+        params = {"userid": userid}
+        response = self.request(api_name=api_name, method="get", params=params)
+        
         return response
 
     def invite(self, user_list: list = [], party_list: list = [], tag_list: list = []):
@@ -157,9 +123,8 @@ class user(base):
         if tag_list:
             data["tag"] = tag_list
 
-        response = self.request(
-            api_name=api_name, method="post", json=data)
-        logger.debug(response)
+        response = self.request(api_name=api_name, method="post", json=data)
+        
         return response
 
     def get_join_qrcode(self, size_type: int = None):
@@ -173,32 +138,23 @@ class user(base):
         """
         api_name = "corp/get_join_qrcode"
         if size_type:
-            params = {
-                "size_type": size_type
-            }
-        response = self.request(
-            api_name=api_name, method="get", params=params)
-        logger.debug(response)
+            params = {"size_type": size_type}
+        response = self.request(api_name=api_name, method="get", params=params)
+        
         return response
 
     def get_active_stat(self, date: str):
         api_name = "user/get_active_stat"
-        data = {
-            "date": date
-        }
-        response = self.request(
-            api_name=api_name, method="post", json=data)
-        logger.debug(response)
+        data = {"date": date}
+        response = self.request(api_name=api_name, method="post", json=data)
+        
         return response
 
     def getuserid(self, mobile: str):
         api_name = "user/getuserid"
-        data = {
-            "mobile": mobile
-        }
-        response = self.request(
-            api_name=api_name, method="post", json=data)
-        logger.debug(response)
+        data = {"mobile": mobile}
+        response = self.request(api_name=api_name, method="post", json=data)
+        
         return response
 
     def get_userid_by_email(self, email: str, email_type: str = 1):
@@ -207,9 +163,8 @@ class user(base):
             "email": email,
             "email_type": email_type,
         }
-        response = self.request(
-            api_name=api_name, method="post", json=data)
-        logger.debug(response)
+        response = self.request(api_name=api_name, method="post", json=data)
+        
         return response
 
     def list_id(self, cursor: str = None, limit: int = 10000):
@@ -218,7 +173,6 @@ class user(base):
             "cursor": cursor,
             "limit": limit,
         }
-        response = self.request(
-            api_name=api_name, method="post", json=data)
-        logger.debug(response)
+        response = self.request(api_name=api_name, method="post", json=data)
+        
         return response

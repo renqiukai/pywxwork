@@ -11,9 +11,8 @@ class linkedcorp(base):
         https://open.work.weixin.qq.com/api/doc/90000/90135/93172
         """
         api_name = "linkedcorp/agent/get_perm_list"
-        response = self.request(
-            api_name=api_name, method="post")
-        logger.debug(response)
+        response = self.request(api_name=api_name, method="post")
+        
         return response
 
     def get_user(self, userid):
@@ -22,12 +21,9 @@ class linkedcorp(base):
         userid:"CORPID/USERID"
         """
         api_name = "linkedcorp/user/get"
-        data = {
-            "userid": userid
-        }
-        response = self.request(
-            api_name=api_name, json=data, method="post")
-        logger.debug(response)
+        data = {"userid": userid}
+        response = self.request(api_name=api_name, json=data, method="post")
+        
         return response
 
     def get_department_user(self, department_id, fetch_child=None):
@@ -42,9 +38,8 @@ class linkedcorp(base):
         }
         if fetch_child:
             data["fetch_child"] = fetch_child
-        response = self.request(
-            api_name=api_name, method="post", json=data)
-        logger.debug(response)
+        response = self.request(api_name=api_name, method="post", json=data)
+        
         return response
 
     def get_department_user_detail(self, department_id, fetch_child=None):
@@ -59,9 +54,8 @@ class linkedcorp(base):
         }
         if fetch_child:
             data["fetch_child"] = fetch_child
-        response = self.request(
-            api_name=api_name, method="post", json=data)
-        logger.debug(response)
+        response = self.request(api_name=api_name, method="post", json=data)
+        
         return response
 
     def get_department(self, department_id):
@@ -70,10 +64,7 @@ class linkedcorp(base):
         department_id 该字段用的是互联应用可见范围接口返回的department_ids参数，用的是 linkedid + ’/‘ + department_id 拼成的字符串
         """
         api_name = "linkedcorp/department/list"
-        data = {
-            "department_id": department_id
-        }
-        response = self.request(
-            api_name=api_name, method="post", json=data)
-        logger.debug(response)
+        data = {"department_id": department_id}
+        response = self.request(api_name=api_name, method="post", json=data)
+        
         return response

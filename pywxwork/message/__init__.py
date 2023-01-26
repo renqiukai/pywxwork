@@ -3,13 +3,23 @@ from loguru import logger
 
 
 class message(base):
-
     def __init__(self, token: str):
         super().__init__(token)
 
-    def send(self, agentid: int, msgtype: str, send_content: dict, touser: list = [], toparty: list = [], totag: list = [],
-             safe: int = 0, enable_id_trans: int = None, enable_duplicate_check: int = 0, duplicate_check_interval: int = 1800,
-             content_type=None):
+    def send(
+        self,
+        agentid: int,
+        msgtype: str,
+        send_content: dict,
+        touser: list = [],
+        toparty: list = [],
+        totag: list = [],
+        safe: int = 0,
+        enable_id_trans: int = None,
+        enable_duplicate_check: int = 0,
+        duplicate_check_interval: int = 1800,
+        content_type=None,
+    ):
         api_name = "message/send"
         if not content_type:
             content_type = msgtype
@@ -20,7 +30,7 @@ class message(base):
             "safe": safe,
             "enable_id_trans": enable_id_trans,
             "enable_duplicate_check": enable_duplicate_check,
-            "duplicate_check_interval": duplicate_check_interval
+            "duplicate_check_interval": duplicate_check_interval,
         }
         if enable_id_trans:
             data["enable_id_trans"] = enable_id_trans
@@ -34,17 +44,21 @@ class message(base):
         if totag:
             totag = "|".join(totag)
             data["totag"] = totag
-        response = self.request(
-            api_name=api_name,
-            method="post",
-            json=data,
-        )
-        logger.debug(response)
+        response = self.request(api_name=api_name, method="post", json=data,)
         return response
 
-    def send_text(self, agentid: int, content: str, touser: list = [], toparty: list = [], totag: list = [],
-                  safe: int = 0, enable_id_trans: int = 0, enable_duplicate_check: int = 0, duplicate_check_interval: int = 1800,
-                  ):
+    def send_text(
+        self,
+        agentid: int,
+        content: str,
+        touser: list = [],
+        toparty: list = [],
+        totag: list = [],
+        safe: int = 0,
+        enable_id_trans: int = 0,
+        enable_duplicate_check: int = 0,
+        duplicate_check_interval: int = 1800,
+    ):
         response = self.send(
             agentid=agentid,
             msgtype="text",
@@ -57,12 +71,19 @@ class message(base):
             enable_duplicate_check=enable_duplicate_check,
             duplicate_check_interval=duplicate_check_interval,
         )
-        logger.debug(response)
         return response
 
-    def send_image(self, agentid: int, media_id: str, touser: list = [], toparty: list = [], totag: list = [],
-                   safe: int = 0, enable_duplicate_check: int = 0, duplicate_check_interval: int = 1800,
-                   ):
+    def send_image(
+        self,
+        agentid: int,
+        media_id: str,
+        touser: list = [],
+        toparty: list = [],
+        totag: list = [],
+        safe: int = 0,
+        enable_duplicate_check: int = 0,
+        duplicate_check_interval: int = 1800,
+    ):
         response = self.send(
             agentid=agentid,
             msgtype="image",
@@ -74,12 +95,19 @@ class message(base):
             enable_duplicate_check=enable_duplicate_check,
             duplicate_check_interval=duplicate_check_interval,
         )
-        logger.debug(response)
         return response
 
-    def send_voice(self, agentid: int, media_id: str, touser: list = [], toparty: list = [], totag: list = [],
-                   safe: int = 0, enable_duplicate_check: int = 0, duplicate_check_interval: int = 1800,
-                   ):
+    def send_voice(
+        self,
+        agentid: int,
+        media_id: str,
+        touser: list = [],
+        toparty: list = [],
+        totag: list = [],
+        safe: int = 0,
+        enable_duplicate_check: int = 0,
+        duplicate_check_interval: int = 1800,
+    ):
         response = self.send(
             agentid=agentid,
             msgtype="voice",
@@ -91,12 +119,19 @@ class message(base):
             enable_duplicate_check=enable_duplicate_check,
             duplicate_check_interval=duplicate_check_interval,
         )
-        logger.debug(response)
         return response
 
-    def send_video(self, agentid: int, media_id: str, touser: list = [], toparty: list = [], totag: list = [],
-                   safe: int = 0, enable_duplicate_check: int = 0, duplicate_check_interval: int = 1800,
-                   ):
+    def send_video(
+        self,
+        agentid: int,
+        media_id: str,
+        touser: list = [],
+        toparty: list = [],
+        totag: list = [],
+        safe: int = 0,
+        enable_duplicate_check: int = 0,
+        duplicate_check_interval: int = 1800,
+    ):
         response = self.send(
             agentid=agentid,
             msgtype="video",
@@ -108,12 +143,19 @@ class message(base):
             enable_duplicate_check=enable_duplicate_check,
             duplicate_check_interval=duplicate_check_interval,
         )
-        logger.debug(response)
         return response
 
-    def send_file(self, agentid: int, media_id: str, touser: list = [], toparty: list = [], totag: list = [],
-                  safe: int = 0, enable_duplicate_check: int = 0, duplicate_check_interval: int = 1800,
-                  ):
+    def send_file(
+        self,
+        agentid: int,
+        media_id: str,
+        touser: list = [],
+        toparty: list = [],
+        totag: list = [],
+        safe: int = 0,
+        enable_duplicate_check: int = 0,
+        duplicate_check_interval: int = 1800,
+    ):
         response = self.send(
             agentid=agentid,
             msgtype="file",
@@ -125,12 +167,23 @@ class message(base):
             enable_duplicate_check=enable_duplicate_check,
             duplicate_check_interval=duplicate_check_interval,
         )
-        logger.debug(response)
         return response
 
-    def send_textcard(self, agentid: int, title: str, description: str, url: str, btntxt: str, touser: list = [], toparty: list = [], totag: list = [],
-                      safe: int = 0, enable_id_trans=0, enable_duplicate_check: int = 0, duplicate_check_interval: int = 1800,
-                      ):
+    def send_textcard(
+        self,
+        agentid: int,
+        title: str,
+        description: str,
+        url: str,
+        btntxt: str,
+        touser: list = [],
+        toparty: list = [],
+        totag: list = [],
+        safe: int = 0,
+        enable_id_trans=0,
+        enable_duplicate_check: int = 0,
+        duplicate_check_interval: int = 1800,
+    ):
         response = self.send(
             agentid=agentid,
             msgtype="textcard",
@@ -148,12 +201,20 @@ class message(base):
             enable_duplicate_check=enable_duplicate_check,
             duplicate_check_interval=duplicate_check_interval,
         )
-        logger.debug(response)
         return response
 
-    def send_news(self, agentid: int, articles: list, touser: list = [], toparty: list = [], totag: list = [],
-                  safe: int = 0, enable_id_trans=0, enable_duplicate_check: int = 0, duplicate_check_interval: int = 1800,
-                  ):
+    def send_news(
+        self,
+        agentid: int,
+        articles: list,
+        touser: list = [],
+        toparty: list = [],
+        totag: list = [],
+        safe: int = 0,
+        enable_id_trans=0,
+        enable_duplicate_check: int = 0,
+        duplicate_check_interval: int = 1800,
+    ):
         """图文消息
 
         Args:
@@ -187,12 +248,20 @@ class message(base):
             enable_duplicate_check=enable_duplicate_check,
             duplicate_check_interval=duplicate_check_interval,
         )
-        logger.debug(response)
         return response
 
-    def send_mp_news(self, agentid: int, articles: list, touser: list = [], toparty: list = [], totag: list = [],
-                     safe: int = 0, enable_id_trans=0, enable_duplicate_check: int = 0, duplicate_check_interval: int = 1800,
-                     ):
+    def send_mp_news(
+        self,
+        agentid: int,
+        articles: list,
+        touser: list = [],
+        toparty: list = [],
+        totag: list = [],
+        safe: int = 0,
+        enable_id_trans=0,
+        enable_duplicate_check: int = 0,
+        duplicate_check_interval: int = 1800,
+    ):
         """图文消息(mpnews)
 
         mpnews类型的图文消息，跟普通的图文消息一致，唯一的差异是图文内容存储在企业微信。
@@ -231,12 +300,20 @@ class message(base):
             enable_duplicate_check=enable_duplicate_check,
             duplicate_check_interval=duplicate_check_interval,
         )
-        logger.debug(response)
         return response
 
-    def send_markdown(self, agentid: int, content: str, touser: list = [], toparty: list = [], totag: list = [],
-                      safe: int = 0, enable_id_trans=0, enable_duplicate_check: int = 0, duplicate_check_interval: int = 1800,
-                      ):
+    def send_markdown(
+        self,
+        agentid: int,
+        content: str,
+        touser: list = [],
+        toparty: list = [],
+        totag: list = [],
+        safe: int = 0,
+        enable_id_trans=0,
+        enable_duplicate_check: int = 0,
+        duplicate_check_interval: int = 1800,
+    ):
         response = self.send(
             agentid=agentid,
             msgtype="markdown",
@@ -249,12 +326,20 @@ class message(base):
             enable_duplicate_check=enable_duplicate_check,
             duplicate_check_interval=duplicate_check_interval,
         )
-        logger.debug(response)
         return response
 
-    def send_miniprogram_notice(self, agentid: int, send_content: dict, touser: list = [], toparty: list = [], totag: list = [],
-                                safe: int = 0, enable_id_trans=0, enable_duplicate_check: int = 0, duplicate_check_interval: int = 1800,
-                                ):
+    def send_miniprogram_notice(
+        self,
+        agentid: int,
+        send_content: dict,
+        touser: list = [],
+        toparty: list = [],
+        totag: list = [],
+        safe: int = 0,
+        enable_id_trans=0,
+        enable_duplicate_check: int = 0,
+        duplicate_check_interval: int = 1800,
+    ):
         """小程序通知消息
         https://open.work.weixin.qq.com/api/doc/90000/90135/90236
         Args:
@@ -307,12 +392,20 @@ class message(base):
             enable_duplicate_check=enable_duplicate_check,
             duplicate_check_interval=duplicate_check_interval,
         )
-        logger.debug(response)
         return response
 
-    def send_interactive_taskcard(self, agentid: int, send_content: dict, touser: list = [], toparty: list = [], totag: list = [],
-                                  safe: int = 0, enable_id_trans=0, enable_duplicate_check: int = 0, duplicate_check_interval: int = 1800,
-                                  ):
+    def send_interactive_taskcard(
+        self,
+        agentid: int,
+        send_content: dict,
+        touser: list = [],
+        toparty: list = [],
+        totag: list = [],
+        safe: int = 0,
+        enable_id_trans=0,
+        enable_duplicate_check: int = 0,
+        duplicate_check_interval: int = 1800,
+    ):
         response = self.send(
             agentid=agentid,
             msgtype="interactive_taskcard",
@@ -325,10 +418,11 @@ class message(base):
             enable_duplicate_check=enable_duplicate_check,
             duplicate_check_interval=duplicate_check_interval,
         )
-        logger.debug(response)
         return response
 
-    def update_taskcard(self, userids: list, agentid: int, task_id: str, replace_name: str):
+    def update_taskcard(
+        self, userids: list, agentid: int, task_id: str, replace_name: str
+    ):
         """更新任务卡片消息状态
 
         Args:
@@ -345,12 +439,7 @@ class message(base):
             "userids": userids,
             "agentid": agentid,
             "task_id": task_id,
-            "replace_name": replace_name
+            "replace_name": replace_name,
         }
-        response = self.request(
-            api_name=api_name,
-            method="POST",
-            json=data,
-        )
-        logger.debug(response)
+        response = self.request(api_name=api_name, method="POST", json=data,)
         return response

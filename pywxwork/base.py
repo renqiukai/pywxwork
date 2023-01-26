@@ -7,10 +7,7 @@ class base:
     host_name = "https://qyapi.weixin.qq.com/cgi-bin"
     token = None
 
-    def __init__(
-        self,
-        token: str
-    ):
+    def __init__(self, token: str):
         """init
 
         Args:
@@ -31,26 +28,21 @@ class base:
             params["access_token"] = self.token
         kwargs["params"] = params
 
-        logger.debug(url)
-        logger.debug(kwargs)
+        logger.debug(dict(msg="正在请求的url:", url=url))
+        logger.debug(dict(msg="正在请求的参数:", kwargs=kwargs))
 
-        response = requests.request(
-            method=method,
-            url=url,
-            **kwargs,
-        )
+        response = requests.request(method=method, url=url, **kwargs,)
         if response.status_code == 200:
             return self.response(response.json())
-        logger.error({
-            "msg": "请求错误",
-            "data": response.json(),
-        })
+        logger.error(
+            {"msg": "请求错误", "data": response.json(), }
+        )
 
     def response(self, data):
+        logger.debug(dict(msg="返回值", response=data))
         return data
 
     def get_api_domain_ip(self):
         api_name = "get_api_domain_ip"
         response = self.request(api_name=api_name,)
-        logger.debug(response)
         return response

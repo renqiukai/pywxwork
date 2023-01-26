@@ -4,7 +4,6 @@ import datetime
 
 
 class token(base):
-
     def __init__(self, corpid: str, corpsecret: str) -> None:
         """init
 
@@ -17,8 +16,7 @@ class token(base):
         response = self.get()
         self.token = response.get("access_token")
         self.expires_in = response.get("expires_in")
-        logger.debug(self.token)
-
+        logger.debug(dict(msg="请求的token", token=self.token))
 
     def get(self):
         api_name = "gettoken"

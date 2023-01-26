@@ -13,14 +13,18 @@ class tag(base):
             params["tag_id"] = tag_id
         if group_id:
             params["group_id"] = group_id
-        response = self.request(
-            api_name=api_name,
-            json=params,
-            method="POST")
-        logger.debug(response)
+        response = self.request(api_name=api_name, json=params, method="POST")
+        
         return response
 
-    def add(self, tag: list, order: int, group_id: int = None, group_name: str = None, agentid: str = None):
+    def add(
+        self,
+        tag: list,
+        order: int,
+        group_id: int = None,
+        group_name: str = None,
+        agentid: str = None,
+    ):
         """添加企业客户标签
 
         Args:
@@ -40,11 +44,7 @@ class tag(base):
             }
         """
         api_name = "externalcontact/add_corp_tag"
-        params = {
-            "order": order,
-            "tag": tag,
-            "agentid": 1000014
-        }
+        params = {"order": order, "tag": tag, "agentid": 1000014}
         if group_name:
             params["group_name"] = group_name
         if agentid:
@@ -52,14 +52,11 @@ class tag(base):
         if group_id:
             # 有groupid表示更新组内的标签无groupid表示新建组
             params["group_id"] = group_id
-        response = self.request(
-            api_name=api_name,
-            json=params,
-            method="POST")
-        logger.debug(response)
+        response = self.request(api_name=api_name, json=params, method="POST")
+        
         return response
 
-    def update(self,  id: str, name: str = None, order: int = None, agentid: str = None):
+    def update(self, id: str, name: str = None, order: int = None, agentid: str = None):
         """编辑企业客户标签
 
         Args:
@@ -81,9 +78,6 @@ class tag(base):
             params["agentid"] = agentid
         if order:
             params["order"] = order
-        response = self.request(
-            api_name=api_name,
-            json=params,
-            method="POST")
-        logger.debug(response)
+        response = self.request(api_name=api_name, json=params, method="POST")
+        
         return response

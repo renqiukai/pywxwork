@@ -8,13 +8,9 @@ class invoice(base):
 
     def get_invoice_info(self, card_id, encrypt_code):
         api_name = "card/invoice/reimburse/getinvoiceinfo"
-        data = {
-            "card_id": card_id,
-            "encrypt_code": encrypt_code
-        }
-        response = self.request(
-            api_name=api_name, method="post", json=data)
-        logger.debug(response)
+        data = {"card_id": card_id, "encrypt_code": encrypt_code}
+        response = self.request(api_name=api_name, method="post", json=data)
+        
         return response
 
     def update_invoice_status(self, card_id, encrypt_code, reimburse_status):
@@ -28,12 +24,11 @@ class invoice(base):
         data = {
             "card_id": card_id,
             "encrypt_code": encrypt_code,
-            "reimburse_status": reimburse_status
+            "reimburse_status": reimburse_status,
         }
 
-        response = self.request(
-            api_name=api_name, method="post", json=data)
-        logger.debug(response)
+        response = self.request(api_name=api_name, method="post", json=data)
+        
         return response
 
     def update_invoice_status_batch(self, data):
@@ -44,9 +39,8 @@ class invoice(base):
         INVOICE_REIMBURSE_CLOSURE:发票已核销，从用户卡包中移除
         """
         api_name = "card/invoice/reimburse/updatestatusbatch"
-        response = self.request(
-            api_name=api_name, method="post", json=data)
-        logger.debug(response)
+        response = self.request(api_name=api_name, method="post", json=data)
+        
         return response
 
     def update_invoice_status_batch_demo(self):
@@ -59,14 +53,13 @@ class invoice(base):
         data = {
             "openid": "OPENID",
             "reimburse_status": "INVOICE_REIMBURSE_INIT",
-            "invoice_list":
-            [
+            "invoice_list": [
                 {"card_id": "cardid_1", "encrypt_code": "encrypt_code_1"},
-                {"card_id": "cardid_2", "encrypt_code": "encrypt_code_2"}
-            ]
+                {"card_id": "cardid_2", "encrypt_code": "encrypt_code_2"},
+            ],
         }
         response = self.update_invoice_status_batch(data)
-        logger.debug(response)
+        
         return response
 
     def get_invoice_status_batch(self, data):
@@ -77,9 +70,8 @@ class invoice(base):
         INVOICE_REIMBURSE_CLOSURE:发票已核销，从用户卡包中移除
         """
         api_name = "card/invoice/reimburse/getinvoiceinfobatch"
-        response = self.request(
-            api_name=api_name, method="post", json=data)
-        logger.debug(response)
+        response = self.request(api_name=api_name, method="post", json=data)
+        
         return response
 
     def get_invoice_status_batch_demo(self):
@@ -91,16 +83,10 @@ class invoice(base):
         """
         data = {
             "item_list": [
-                {
-                    "card_id": "CARDID1",
-                    "encrypt_code": "ENCRYPTCODE1"
-                },
-                {
-                    "card_id": "CARDID2",
-                    "encrypt_code": "ENCRYPTCODE2"
-                }
+                {"card_id": "CARDID1", "encrypt_code": "ENCRYPTCODE1"},
+                {"card_id": "CARDID2", "encrypt_code": "ENCRYPTCODE2"},
             ]
         }
         response = self.get_invoice_status_batch(data)
-        logger.debug(response)
+        
         return response
