@@ -90,7 +90,7 @@ class webHook:
         response = self.request(json=data)
         return response
 
-    def mak_article(title, description, url, picurl):
+    def make_article(self, title, description, url, picurl):
         return {
             "title": title,
             "description": description,
