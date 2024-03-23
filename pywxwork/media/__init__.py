@@ -14,12 +14,12 @@ class media(base):
         response = self.request(
             api_name=api_name, method="POST", params=params, files=files
         )
-        
+
         return response
 
     def uploadimg(self, file: str):
         api_name = "media/uploadimg"
         files = {"image": open(file, "rb")}
         response = self.request(api_name=api_name, method="POST", files=files)
-        
+
         return response

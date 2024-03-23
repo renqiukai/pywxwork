@@ -27,8 +27,12 @@ class appchat(base):
             data["owner"] = owner
         if chatid:
             data["chatid"] = chatid
-        response = self.request(api_name=api_name, method="POST", json=data,)
-        
+        response = self.request(
+            api_name=api_name,
+            method="POST",
+            json=data,
+        )
+
         return response
 
     def update(
@@ -60,8 +64,12 @@ class appchat(base):
             data["add_user_list"] = add_user_list
         if del_user_list:
             data["del_user_list"] = del_user_list
-        response = self.request(api_name=api_name, method="POST", json=data,)
-        
+        response = self.request(
+            api_name=api_name,
+            method="POST",
+            json=data,
+        )
+
         return response
 
     def get(self, chatid: int):
@@ -74,8 +82,12 @@ class appchat(base):
         data = {
             "chatid": chatid,
         }
-        response = self.request(api_name=api_name, method="get", params=data,)
-        
+        response = self.request(
+            api_name=api_name,
+            method="get",
+            params=data,
+        )
+
         return response
 
     def send_text(self, chatid: str, content: str, safe: int = 0):
@@ -86,6 +98,10 @@ class appchat(base):
             "text": {"content": content},
             "safe": safe,
         }
-        response = self.request(api_name=api_name, method="post", json=data,)
-        
+        response = self.request(
+            api_name=api_name,
+            method="post",
+            json=data,
+        )
+
         return response

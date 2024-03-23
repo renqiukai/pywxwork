@@ -31,11 +31,18 @@ class base:
         logger.debug(dict(msg="正在请求的url:", url=url))
         logger.debug(dict(msg="正在请求的参数:", kwargs=kwargs))
 
-        response = requests.request(method=method, url=url, **kwargs,)
+        response = requests.request(
+            method=method,
+            url=url,
+            **kwargs,
+        )
         if response.status_code == 200:
             return self.response(response.json())
         logger.error(
-            {"msg": "请求错误", "data": response.json(), }
+            {
+                "msg": "请求错误",
+                "data": response.json(),
+            }
         )
 
     def response(self, data):
@@ -44,5 +51,7 @@ class base:
 
     def get_api_domain_ip(self):
         api_name = "get_api_domain_ip"
-        response = self.request(api_name=api_name,)
+        response = self.request(
+            api_name=api_name,
+        )
         return response

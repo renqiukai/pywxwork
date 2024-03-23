@@ -23,7 +23,7 @@ class tag(base):
             data["tagid"] = tagid
         api_name = "tag/create"
         response = self.request(api_name=api_name, method="post", json=data)
-        
+
         return response
 
     def update(self, tagid: int, tagname: str) -> dict:
@@ -34,19 +34,19 @@ class tag(base):
             tagname (str): 标签名称，长度限制为32个字（汉字或英文字母），标签不可与其他标签重名。
 
         Returns:
-            dict: 
+            dict:
         """
         api_name = "tag/update"
         data = {"tagid": tagid, "tagname": tagname}
         response = self.request(api_name=api_name, method="post", json=data)
-        
+
         return response
 
     def delete(self, tagid: int):
         api_name = "tag/delete"
         params = {"tagid": tagid}
         response = self.request(api_name=api_name, method="get", params=params)
-        
+
         return response
 
     def get(self, tagid: int):
@@ -58,7 +58,7 @@ class tag(base):
         api_name = "tag/get"
         params = {"tagid": tagid}
         response = self.request(api_name=api_name, method="get", params=params)
-        
+
         return response
 
     def addtagusers(
@@ -72,7 +72,7 @@ class tag(base):
             partylist (list, optional): 企业部门ID列表，注意：userlist、partylist不能同时为空，单次请求个数不超过100. Defaults to [].
 
         Returns:
-            dict: 
+            dict:
         """
         api_name = "tag/addtagusers"
         data = {
@@ -83,7 +83,7 @@ class tag(base):
         if partylist:
             data["partylist"] = partylist
         response = self.request(api_name=api_name, method="post", json=data)
-        
+
         return response
 
     def deltagusers(
@@ -97,7 +97,7 @@ class tag(base):
             partylist (list, optional): 企业部门ID列表，注意：userlist、partylist不能同时为空，单次请求个数不超过100. Defaults to [].
 
         Returns:
-            dict: 
+            dict:
         """
         api_name = "tag/deltagusers"
         data = {
@@ -108,11 +108,11 @@ class tag(base):
         if partylist:
             data["partylist"] = partylist
         response = self.request(api_name=api_name, method="post", json=data)
-        
+
         return response
 
     def list(self):
         api_name = "tag/list"
         response = self.request(api_name=api_name, method="get")
-        
+
         return response

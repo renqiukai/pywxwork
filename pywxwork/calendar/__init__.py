@@ -37,7 +37,7 @@ class calendar(base):
             agentid ([type], optional): 授权方安装的应用agentid。仅旧的第三方多应用套件需要填此参数. Defaults to None.
 
         Returns:
-            dict: 
+            dict:
         """
         api_name = "oa/calendar/add"
         data = {
@@ -53,7 +53,11 @@ class calendar(base):
         }
         if agentid:
             data["agentid"] = agentid
-        response = self.request(api_name=api_name, method="post", json=data,)
+        response = self.request(
+            api_name=api_name,
+            method="post",
+            json=data,
+        )
         return response
 
     def update(
@@ -87,7 +91,7 @@ class calendar(base):
                                             第三方应用不支持使用该参数. Defaults to 0.
 
         Returns:
-            dict: 
+            dict:
         """
         api_name = "oa/calendar/update"
         data = {
@@ -102,7 +106,11 @@ class calendar(base):
                 "shares": shares,
             },
         }
-        response = self.request(api_name=api_name, method="post", json=data,)
+        response = self.request(
+            api_name=api_name,
+            method="post",
+            json=data,
+        )
         return response
 
     def get(self, cal_id_list=[]):
@@ -110,13 +118,17 @@ class calendar(base):
 
         Args:
             cal_id_list (list, optional): cal_id 列表. Defaults to [].
-        { 
+        {
             "cal_id_list": ["wcjgewCwAAqeJcPI1d8Pwbjt7nttzAAA"]
         }
         """
         api_name = "oa/calendar/get"
         data = {"cal_id_list": cal_id_list}
-        response = self.request(api_name=api_name, method="post", json=data,)
+        response = self.request(
+            api_name=api_name,
+            method="post",
+            json=data,
+        )
         return response
 
     def delete(self, cal_id):
@@ -124,13 +136,17 @@ class calendar(base):
 
         Args:
             cal_id (str): cal_id. Defaults to [].
-        { 
+        {
             "cal_id":"wcjgewCwAAqeJcPI1d8Pwbjt7nttzAAA"
         }
         """
         api_name = "oa/calendar/del"
         data = {"cal_id": cal_id}
-        response = self.request(api_name=api_name, method="post", json=data,)
+        response = self.request(
+            api_name=api_name,
+            method="post",
+            json=data,
+        )
         return response
 
 
@@ -203,7 +219,11 @@ class schedule(base):
         }
         if agentid:
             data["agentid"] = agentid
-        response = self.request(api_name=api_name, method="post", json=data,)
+        response = self.request(
+            api_name=api_name,
+            method="post",
+            json=data,
+        )
         return response
 
     def update(
@@ -264,7 +284,11 @@ class schedule(base):
                 "location": location,
             },
         }
-        response = self.request(api_name=api_name, method="post", json=data,)
+        response = self.request(
+            api_name=api_name,
+            method="post",
+            json=data,
+        )
         return response
 
     def get(self, schedule_id_list=[]):
@@ -272,13 +296,17 @@ class schedule(base):
 
         Args:
             schedule_id_list (list, optional): calschedule_id_list_id 列表. Defaults to [].
-        { 
+        {
             "schedule_id_list": ["17c7d2bd9f20d652840f72f59e796AAA"]
         }
         """
         api_name = "oa/schedule/get"
         data = {"schedule_id_list": schedule_id_list}
-        response = self.request(api_name=api_name, method="post", json=data,)
+        response = self.request(
+            api_name=api_name,
+            method="post",
+            json=data,
+        )
         return response
 
     def delete(self, schedule_id=[]):
@@ -286,13 +314,17 @@ class schedule(base):
 
         Args:
             schedule_id (str): schedule_id
-        { 
+        {
             "schedule_id": "17c7d2bd9f20d652840f72f59e796AAA"
         }
         """
         api_name = "oa/schedule/del"
         data = {"schedule_id": schedule_id}
-        response = self.request(api_name=api_name, method="post", json=data,)
+        response = self.request(
+            api_name=api_name,
+            method="post",
+            json=data,
+        )
         return response
 
     def get_by_calendar(self, cal_id: str, offset=100, limit=1000):
@@ -308,5 +340,9 @@ class schedule(base):
         """
         api_name = "oa/schedule/get_by_calendar"
         data = {"cal_id": cal_id, "offset": offset, "limit": limit}
-        response = self.request(api_name=api_name, method="post", json=data,)
+        response = self.request(
+            api_name=api_name,
+            method="post",
+            json=data,
+        )
         return response

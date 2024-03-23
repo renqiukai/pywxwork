@@ -6,11 +6,14 @@
 
 from setuptools import setup, find_packages
 
-version = "1.0.8"
+version = "1.0.11"
 setup(
     name="pywxwork",
     version=version,
-    keywords=["wxwork", "workwechat",],
+    keywords=[
+        "wxwork",
+        "workwechat",
+    ],
     description="",
     long_description="",
     license="MIT Licence",

@@ -10,12 +10,12 @@ class invoice(base):
         api_name = "card/invoice/reimburse/getinvoiceinfo"
         data = {"card_id": card_id, "encrypt_code": encrypt_code}
         response = self.request(api_name=api_name, method="post", json=data)
-        
+
         return response
 
     def update_invoice_status(self, card_id, encrypt_code, reimburse_status):
         """
-        发报销状态 
+        发报销状态
         INVOICE_REIMBURSE_INIT：发票初始状态，未锁定；
         INVOICE_REIMBURSE_LOCK：发票已锁定，无法重复提交报销;
         INVOICE_REIMBURSE_CLOSURE:发票已核销，从用户卡包中移除
@@ -28,24 +28,24 @@ class invoice(base):
         }
 
         response = self.request(api_name=api_name, method="post", json=data)
-        
+
         return response
 
     def update_invoice_status_batch(self, data):
         """
-        发报销状态 
+        发报销状态
         INVOICE_REIMBURSE_INIT：发票初始状态，未锁定；
         INVOICE_REIMBURSE_LOCK：发票已锁定，无法重复提交报销;
         INVOICE_REIMBURSE_CLOSURE:发票已核销，从用户卡包中移除
         """
         api_name = "card/invoice/reimburse/updatestatusbatch"
         response = self.request(api_name=api_name, method="post", json=data)
-        
+
         return response
 
     def update_invoice_status_batch_demo(self):
         """
-        发报销状态 
+        发报销状态
         INVOICE_REIMBURSE_INIT：发票初始状态，未锁定；
         INVOICE_REIMBURSE_LOCK：发票已锁定，无法重复提交报销;
         INVOICE_REIMBURSE_CLOSURE:发票已核销，从用户卡包中移除
@@ -59,24 +59,24 @@ class invoice(base):
             ],
         }
         response = self.update_invoice_status_batch(data)
-        
+
         return response
 
     def get_invoice_status_batch(self, data):
         """
-        发报销状态 
+        发报销状态
         INVOICE_REIMBURSE_INIT：发票初始状态，未锁定；
         INVOICE_REIMBURSE_LOCK：发票已锁定，无法重复提交报销;
         INVOICE_REIMBURSE_CLOSURE:发票已核销，从用户卡包中移除
         """
         api_name = "card/invoice/reimburse/getinvoiceinfobatch"
         response = self.request(api_name=api_name, method="post", json=data)
-        
+
         return response
 
     def get_invoice_status_batch_demo(self):
         """
-        发报销状态 
+        发报销状态
         INVOICE_REIMBURSE_INIT：发票初始状态，未锁定；
         INVOICE_REIMBURSE_LOCK：发票已锁定，无法重复提交报销;
         INVOICE_REIMBURSE_CLOSURE:发票已核销，从用户卡包中移除
@@ -88,5 +88,5 @@ class invoice(base):
             ]
         }
         response = self.get_invoice_status_batch(data)
-        
+
         return response

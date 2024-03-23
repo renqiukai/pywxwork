@@ -12,7 +12,7 @@ class linkedcorp(base):
         """
         api_name = "linkedcorp/agent/get_perm_list"
         response = self.request(api_name=api_name, method="post")
-        
+
         return response
 
     def get_user(self, userid):
@@ -23,7 +23,7 @@ class linkedcorp(base):
         api_name = "linkedcorp/user/get"
         data = {"userid": userid}
         response = self.request(api_name=api_name, json=data, method="post")
-        
+
         return response
 
     def get_department_user(self, department_id, fetch_child=None):
@@ -39,7 +39,7 @@ class linkedcorp(base):
         if fetch_child:
             data["fetch_child"] = fetch_child
         response = self.request(api_name=api_name, method="post", json=data)
-        
+
         return response
 
     def get_department_user_detail(self, department_id, fetch_child=None):
@@ -55,7 +55,7 @@ class linkedcorp(base):
         if fetch_child:
             data["fetch_child"] = fetch_child
         response = self.request(api_name=api_name, method="post", json=data)
-        
+
         return response
 
     def get_department(self, department_id):
@@ -66,5 +66,5 @@ class linkedcorp(base):
         api_name = "linkedcorp/department/list"
         data = {"department_id": department_id}
         response = self.request(api_name=api_name, method="post", json=data)
-        
+
         return response

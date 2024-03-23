@@ -7,6 +7,9 @@ class tag(base):
         super().__init__(token)
 
     def list(self, tag_id: list = [], group_id: list = []):
+        """
+        获取企业标签库
+        """
         api_name = "externalcontact/get_corp_tag_list"
         params = {}
         if tag_id:
@@ -14,13 +17,13 @@ class tag(base):
         if group_id:
             params["group_id"] = group_id
         response = self.request(api_name=api_name, json=params, method="POST")
-        
+
         return response
 
     def add(
         self,
-        tag: list,
-        order: int,
+        tags: list,
+        order: int = None,
         group_id: int = None,
         group_name: str = None,
         agentid: str = None,
@@ -44,7 +47,11 @@ class tag(base):
             }
         """
         api_name = "externalcontact/add_corp_tag"
-        params = {"order": order, "tag": tag, "agentid": 1000014}
+        params = {"tag": tags}
+        if order:
+            params["order"] = order
+        if agentid:
+            params["agentid"] = agentid
         if group_name:
             params["group_name"] = group_name
         if agentid:
@@ -53,10 +60,12 @@ class tag(base):
             # 有groupid表示更新组内的标签无groupid表示新建组
             params["group_id"] = group_id
         response = self.request(api_name=api_name, json=params, method="POST")
-        
+
         return response
 
-    def update(self, id: str, name: str = None, order: int = None, agentid: str = None):
+    def update(
+        self, tag_id: str, name: str = None, order: int = None, agentid: str = None
+    ):
         """编辑企业客户标签
 
         Args:
@@ -70,7 +79,7 @@ class tag(base):
         """
         api_name = "externalcontact/edit_corp_tag"
         params = {
-            "id": id,
+            "id": tag_id,
         }
         if name:
             params["name"] = name
@@ -79,5 +88,20 @@ class tag(base):
         if order:
             params["order"] = order
         response = self.request(api_name=api_name, json=params, method="POST")
-        
+
+        return response
+
+    def delete(self, tag_id: list = [], group_id: list = [], agentid: str = None):
+        """
+        删除企业客户标签
+        """
+        api_name = "externalcontact/del_corp_tag"
+        params = {}
+        if tag_id:
+            params["tag_id"] = tag_id
+        if agentid:
+            params["agentid"] = agentid
+        if group_id:
+            params["group_id"] = group_id
+        response = self.request(api_name=api_name, json=params, method="POST")
         return response

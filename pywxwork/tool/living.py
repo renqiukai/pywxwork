@@ -9,7 +9,7 @@ class living(base):
     def get_user_livingid(self, data):
         api_name = "living/get_user_livingid"
         response = self.request(api_name=api_name, method="post", json=data)
-        
+
         return response
 
     def get_user_livingid_demo(self):
@@ -22,7 +22,7 @@ class living(base):
             "limit": 100,
         }
         response = self.request(api_name=api_name, method="post", json=data)
-        
+
         return response
 
     def get_living_info(self, livingid):
@@ -31,12 +31,12 @@ class living(base):
             "livingid": livingid,
         }
         response = self.request(api_name=api_name, method="get", params=params)
-        
+
         return response
 
     def get_watch_stat(self, livingid):
         api_name = "living/get_watch_stat"
         data = {"livingid": "livingid1", "next_key": "NEXT_KEY"}
         response = self.request(api_name=api_name, method="post", json=data)
-        
+
         return response

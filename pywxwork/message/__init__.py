@@ -44,7 +44,11 @@ class message(base):
         if totag:
             totag = "|".join(totag)
             data["totag"] = totag
-        response = self.request(api_name=api_name, method="post", json=data,)
+        response = self.request(
+            api_name=api_name,
+            method="post",
+            json=data,
+        )
         return response
 
     def send_text(
@@ -270,7 +274,7 @@ class message(base):
         Args:
             agentid (int): [description]
             articles (list): [ {
-               "title": "Title", 
+               "title": "Title",
                "thumb_media_id": "MEDIA_ID",
                "author": "Author",
                "content_source_url": "URL",
@@ -441,5 +445,9 @@ class message(base):
             "task_id": task_id,
             "replace_name": replace_name,
         }
-        response = self.request(api_name=api_name, method="POST", json=data,)
+        response = self.request(
+            api_name=api_name,
+            method="POST",
+            json=data,
+        )
         return response
