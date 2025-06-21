@@ -171,3 +171,14 @@ https://developer.work.weixin.qq.com/document/path/92134
 
 接口文档参考：
 https://developer.work.weixin.qq.com/document/path/92125
+
+### 20240622 新增
+新增电子发票接口封装：
+
+- `invoice.get_invoice_info` - 查询单张电子发票
+- `invoice.get_invoice_info_batch` - 批量查询电子发票
+- `invoice.update_invoice_status` - 更新单张发票状态
+- `invoice.update_invoice_status_batch` - 批量更新发票状态
+
+接口文档参考：
+https://developer.work.weixin.qq.com/document/path/90664
