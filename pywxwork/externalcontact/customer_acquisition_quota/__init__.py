@@ -9,46 +9,6 @@ class customerAcquisitionQuota(base):
         """
         super().__init__(token)
 
-    def get(self, link_id):
-        api_name = "externalcontact/customer_acquisition/get"
-        data = {"link_id": link_id}
-        response = self.request(api_name=api_name, method="post", json=data)
-        return response
-
-    def delete_link(self, link_id):
-        api_name = "externalcontact/customer_acquisition/delete_link"
-        data = {"link_id": link_id}
-        response = self.request(api_name=api_name, method="post", json=data)
-        return response
-
-    def create_link(self, link_id):
-        api_name = "externalcontact/customer_acquisition/list_link"
-        data = {
-            "link_name": "获客链接1号",
-            "range": {"user_list": ["zhangsan", "lisi"], "department_list": [2, 3]},
-            "skip_verify": True,
-            "priority_option": {
-                "priority_type": 2,
-                "priority_userid_list": ["tom", "lisi"],
-            },
-        }
-        response = self.request(api_name=api_name, method="post", json=data)
-        return response
-
-    def update_link(self):
-        api_name = "externalcontact/customer_acquisition/list_link"
-        data = {
-            "link_id": "LINK_ID",
-            "link_name": "获客链接1号",
-            "range": {"user_list": ["zhangsan", "lisi"], "department_list": [2, 3]},
-            "skip_verify": True,
-            "priority_option": {
-                "priority_type": 2,
-                "priority_userid_list": ["tom", "lisi"],
-            },
-        }
-        response = self.request(api_name=api_name, method="post", json=data)
-        return response
 
     # 查询剩余使用量
     def get_quota(self):

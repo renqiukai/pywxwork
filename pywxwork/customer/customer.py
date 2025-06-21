@@ -189,3 +189,83 @@ class customer(base):
         params = {"strategy_id": strategy_id}
         response = self.request(api_name=api_name, json=params, method="post")
         return response
+
+    def send_welcome_msg(self, data):
+        """发送新客户欢迎语"""
+        api_name = "externalcontact/send_welcome_msg"
+        response = self.request(api_name=api_name, method="post", json=data)
+        return response
+
+    def transfer_customer(
+        self,
+        external_userid: list,
+        handover_userid: str,
+        takeover_userid: str,
+        transfer_success_msg: bool = True,
+    ):
+        """在职成员分配客户"""
+        api_name = "externalcontact/transfer_customer"
+        data = {
+            "external_userid": external_userid,
+            "handover_userid": handover_userid,
+            "takeover_userid": takeover_userid,
+            "transfer_success_msg": transfer_success_msg,
+        }
+        response = self.request(api_name=api_name, method="post", json=data)
+        return response
+
+    def transfer_result(
+        self,
+        handover_userid: str,
+        takeover_userid: str,
+        cursor: str = None,
+        limit: int = 100,
+    ):
+        """查询在职成员分配结果"""
+        api_name = "externalcontact/transfer_result"
+        data = {
+            "handover_userid": handover_userid,
+            "takeover_userid": takeover_userid,
+            "limit": limit,
+        }
+        if cursor:
+            data["cursor"] = cursor
+        response = self.request(api_name=api_name, method="post", json=data)
+        return response
+
+    def resigned_transfer_customer(
+        self,
+        external_userid: list,
+        handover_userid: str,
+        takeover_userid: str,
+        transfer_success_msg: bool = True,
+    ):
+        """离职成员客户继承"""
+        api_name = "externalcontact/resigned/transfer_customer"
+        data = {
+            "external_userid": external_userid,
+            "handover_userid": handover_userid,
+            "takeover_userid": takeover_userid,
+            "transfer_success_msg": transfer_success_msg,
+        }
+        response = self.request(api_name=api_name, method="post", json=data)
+        return response
+
+    def resigned_transfer_result(
+        self,
+        handover_userid: str,
+        takeover_userid: str,
+        cursor: str = None,
+        limit: int = 100,
+    ):
+        """查询离职成员客户继承结果"""
+        api_name = "externalcontact/resigned/transfer_result"
+        data = {
+            "handover_userid": handover_userid,
+            "takeover_userid": takeover_userid,
+            "limit": limit,
+        }
+        if cursor:
+            data["cursor"] = cursor
+        response = self.request(api_name=api_name, method="post", json=data)
+        return response
