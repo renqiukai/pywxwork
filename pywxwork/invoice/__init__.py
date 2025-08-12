@@ -13,6 +13,14 @@ class invoice(base):
 
         return response
 
+    def get_invoice_info_batch(self, item_list):
+        """批量查询电子发票信息"""
+        api_name = "card/invoice/reimburse/getinvoiceinfobatch"
+        data = {"item_list": item_list}
+        response = self.request(api_name=api_name, method="post", json=data)
+
+        return response
+
     def update_invoice_status(self, card_id, encrypt_code, reimburse_status):
         """
         发报销状态

@@ -127,7 +127,65 @@ for row in user_list:
 ```
 
 ### 20240617 更新
+新增获客链接接口封装：
 
-https://developer.work.weixin.qq.com/document/path/97297#%E8%8E%B7%E5%8F%96%E8%8E%B7%E5%AE%A2%E9%93%BE%E6%8E%A5%E5%88%97%E8%A1%A8
-https://developer.work.weixin.qq.com/document/path/97297#%E8%8E%B7%E5%8F%96%E8%8E%B7%E5%AE%A2%E9%93%BE%E6%8E%A5%E8%AF%A6%E6%83%85
-https://developer.work.weixin.qq.com/document/path/97375#%E6%9F%A5%E8%AF%A2%E9%93%BE%E6%8E%A5%E4%BD%BF%E7%94%A8%E8%AF%A6%E6%83%85
+- `customer_acquisition.list_link` - 获取获客链接列表
+- `customer_acquisition.get` - 获取获客链接详情
+- `customer_acquisition.create_link` - 创建获客链接
+- `customer_acquisition.update_link` - 更新获客链接
+- `customer_acquisition.delete_link` - 删除获客链接
+- `customer_acquisition_quota.get_quota` - 查询剩余使用量
+- `customer_acquisition_quota.statistic` - 查询链接使用详情
+
+接口文档参考：
+https://developer.work.weixin.qq.com/document/path/97297
+https://developer.work.weixin.qq.com/document/path/97375
+
+### 20240619 新增
+新增客户群管理接口：
+
+- `groupchat.list` - 获取客户群列表
+- `groupchat.get` - 获取客户群详情
+- `groupchat.add_join_way` - 创建群链接
+- `groupchat.get_join_way` - 获取群链接详情
+- `groupchat.update_join_way` - 更新群链接
+- `groupchat.del_join_way` - 删除群链接
+
+接口文档参考：
+https://developer.work.weixin.qq.com/document/path/92120
+
+### 20240620 新增
+新增欢迎语和群欢迎语接口：
+
+- `customer.send_welcome_msg` - 发送新客户欢迎语
+- `group_welcome_template.add` - 创建群欢迎语模板
+- `group_welcome_template.edit` - 编辑群欢迎语模板
+- `group_welcome_template.get` - 获取群欢迎语模板详情
+- `group_welcome_template.delete` - 删除群欢迎语模板
+
+接口文档参考：
+https://developer.work.weixin.qq.com/document/path/92134
+
+### 20240621 新增
+新增客户和群聊继承接口：
+
+- `customer.transfer_customer` - 在职成员分配客户
+- `customer.transfer_result` - 查询客户分配结果
+- `customer.resigned_transfer_customer` - 离职成员客户继承
+- `customer.resigned_transfer_result` - 查询离职客户继承结果
+- `groupchat.transfer` - 离职成员群聊继承
+- `groupchat.transfer_result` - 查询群聊继承结果
+
+接口文档参考：
+https://developer.work.weixin.qq.com/document/path/92125
+
+### 20240622 新增
+新增电子发票接口封装：
+
+- `invoice.get_invoice_info` - 查询单张电子发票
+- `invoice.get_invoice_info_batch` - 批量查询电子发票
+- `invoice.update_invoice_status` - 更新单张发票状态
+- `invoice.update_invoice_status_batch` - 批量更新发票状态
+
+接口文档参考：
+https://developer.work.weixin.qq.com/document/path/90664
