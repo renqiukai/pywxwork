@@ -7,13 +7,14 @@ class base:
     host_name = "https://qyapi.weixin.qq.com/cgi-bin"
     token = None
 
-    def __init__(self, token: str):
+    def __init__(self, token: str, debug=False):
         """init
 
         Args:
             token (str, optional): . Defaults to None.
         """
         self.token = token
+        self.debug = debug
 
     def request(self, api_name, method="GET", **kwargs):
         url = f"{self.host_name}/{api_name}"
@@ -24,6 +25,8 @@ class base:
         # kwargs["headers"] = headers
 
         params = kwargs.get("params", {})
+        if self.debug:
+            params["debug"] = 1
         if self.token:
             params["access_token"] = self.token
         kwargs["params"] = params

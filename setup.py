@@ -1,12 +1,12 @@
 """
 @Author: Rqk
 @Date: 2021-05-22
-@Description: 
+@Description:
 """
 
 from setuptools import setup, find_packages
 
-version = "1.0.13"
+version = "1.0.15"
 setup(
     name="pywxwork",
     version=version,

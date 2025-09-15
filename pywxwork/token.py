@@ -17,6 +17,7 @@ class token(base):
         self.token = response.get("access_token")
         self.expires_in = response.get("expires_in")
         logger.debug(dict(msg="请求的token", token=self.token))
+        self.token_info = response
 
     def get(self):
         api_name = "gettoken"
