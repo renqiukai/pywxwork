@@ -1,9 +1,11 @@
-from .base import base
 from loguru import logger
 import datetime
+import requests
 
 
-class token(base):
+class token:
+    host_name = "https://qyapi.weixin.qq.com/cgi-bin"
+
     def __init__(self, corpid: str, corpsecret: str) -> None:
         """init
 
@@ -33,3 +35,34 @@ class token(base):
 
     def cache_out(self):
         pass
+
+    def request(self, api_name, method="GET", **kwargs):
+        url = f"{self.host_name}/{api_name}"
+
+        params = kwargs.get("params", {})
+        if self.debug:
+            params["debug"] = 1
+        if self.token:
+            params["access_token"] = self.token
+        kwargs["params"] = params
+
+        logger.debug(dict(msg="正在请求的url:", url=url))
+        logger.debug(dict(msg="正在请求的参数:", kwargs=kwargs))
+
+        response = requests.request(
+            method=method,
+            url=url,
+            **kwargs,
+        )
+        if response.status_code == 200:
+            return self.response(response.json())
+        logger.error(
+            {
+                "msg": "请求错误",
+                "data": response.json(),
+            }
+        )
+
+    def response(self, data):
+        logger.debug(dict(msg="返回值", response=data))
+        return data

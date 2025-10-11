@@ -6,7 +6,7 @@
 
 from setuptools import setup, find_packages
 
-version = "1.0.15"
+version = "1.0.17"
 setup(
     name="pywxwork",
     version=version,

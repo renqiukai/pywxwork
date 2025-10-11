@@ -131,3 +131,6 @@ self_test.py
 test_*.py
 test*.py
 .vscode/
+
+# mac
+.DS_Store
