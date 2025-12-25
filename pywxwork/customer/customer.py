@@ -163,8 +163,7 @@ class customer(base):
                 resp = self.batch_get(userid_list[start:end], next_cursor)
                 rows = resp.get("external_contact_list")
                 next_cursor = resp.get("next_cursor")
-                for row in rows:
-                    yield row
+                yield rows
                 if not next_cursor:
                     # 没有cursor表示客户列表到底了
                     break

@@ -6,7 +6,7 @@ import requests
 class token:
     host_name = "https://qyapi.weixin.qq.com/cgi-bin"
 
-    def __init__(self, corpid: str, corpsecret: str) -> None:
+    def __init__(self, corpid: str, corpsecret: str, debug=False) -> None:
         """init
 
         Args:
@@ -15,6 +15,7 @@ class token:
         """
         self.corpid = corpid
         self.corpsecret = corpsecret
+        self.debug = debug
         response = self.get()
         self.token = response.get("access_token")
         self.expires_in = response.get("expires_in")
@@ -42,8 +43,6 @@ class token:
         params = kwargs.get("params", {})
         if self.debug:
             params["debug"] = 1
-        if self.token:
-            params["access_token"] = self.token
         kwargs["params"] = params
 
         logger.debug(dict(msg="正在请求的url:", url=url))
