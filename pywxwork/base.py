@@ -2,6 +2,11 @@ import requests
 import datetime
 from loguru import logger
 
+proxies = {
+    "http": "http://8.136.63.63:8888",
+    "https": "http://8.136.63.63:8888",
+}
+
 
 class base:
     host_name = "https://qyapi.weixin.qq.com/cgi-bin"
@@ -30,13 +35,10 @@ class base:
         if self.token:
             params["access_token"] = self.token
         kwargs["params"] = params
-
-        logger.debug(dict(msg="正在请求的url:", url=url))
-        logger.debug(dict(msg="正在请求的参数:", kwargs=kwargs))
-
         response = requests.request(
             method=method,
             url=url,
+            proxies=proxies,
             **kwargs,
         )
         if response.status_code == 200:
@@ -49,7 +51,15 @@ class base:
         )
 
     def response(self, data):
-        logger.debug(dict(msg="返回值", response=data))
+        errcode = data.get("errcode")
+        if errcode == 0:
+            return data
+        logger.error(
+            {
+                "msg": "接口请求失败",
+                "data": data,
+            }
+        )
         return data
 
     def get_api_domain_ip(self):

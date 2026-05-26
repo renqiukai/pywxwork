@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding:utf-8 -*-
 
-""" 对企业微信发送给企业后台的消息加解密示例代码.
+"""对企业微信发送给企业后台的消息加解密示例代码.
 @copyright: Copyright (c) 1998-2014 Tencent Inc.
 
 """
@@ -271,9 +271,10 @@ class WXBizMsgCrypt(object):
         # @return: 成功0，失败返回对应的错误码
         # 验证安全签名
         xmlParse = XMLParse()
-        ret, encrypt = xmlParse.extract(sPostData)
-        if ret != 0:
-            return ret, None
+        resp = xmlParse.extract(sPostData)
+        if resp[0] != 0:
+            return resp[0], None
+        ret, encrypt = resp
         sha1 = SHA1()
         ret, signature = sha1.getSHA1(self.m_sToken, sTimeStamp, sNonce, encrypt)
         if ret != 0:

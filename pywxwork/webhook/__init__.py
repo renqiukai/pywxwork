@@ -131,7 +131,10 @@ class webHook:
                     "desc": "美女直播",
                     "desc_color": 0,
                 },
-                "main_title": {"title": "欢迎使用每日大赛", "desc": "您的好友正在邀请您一起观看"},
+                "main_title": {
+                    "title": "欢迎使用每日大赛",
+                    "desc": "您的好友正在邀请您一起观看",
+                },
                 "card_image": {
                     "url": "https://wework.qpic.cn/wwpic/354393_4zpkKXd7SrGMvfg_1629280616/0",
                     "aspect_ratio": 2.25,

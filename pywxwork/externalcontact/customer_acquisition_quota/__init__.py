@@ -9,7 +9,6 @@ class customerAcquisitionQuota(base):
         """
         super().__init__(token)
 
-
     # 查询剩余使用量
     def get_quota(self):
         api_name = "externalcontact/customer_acquisition_quota"

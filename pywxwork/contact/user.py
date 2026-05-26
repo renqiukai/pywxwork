@@ -170,9 +170,10 @@ class user(base):
     def list_id(self, cursor: str = None, limit: int = 10000):
         api_name = "user/list_id"
         data = {
-            "cursor": cursor,
             "limit": limit,
         }
+        if cursor:
+            data["cursor"] = cursor
         response = self.request(api_name=api_name, method="post", json=data)
 
         return response

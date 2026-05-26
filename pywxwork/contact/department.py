@@ -37,8 +37,8 @@ class department(base):
 
         Args:
             id (int): 部门id
-            name (str, optional): 部门名称。长度限制为1~32个字符，字符不能包括\:?”<>｜. Defaults to None.
-            name_en (str, optional): 英文名称，需要在管理后台开启多语言支持才能生效。长度限制为1~32个字符，字符不能包括\:?”<>｜. Defaults to None.
+            name (str, optional): 部门名称。长度限制为1~32个字符，字符不能包括:?”<>｜. Defaults to None.
+            name_en (str, optional): 英文名称，需要在管理后台开启多语言支持才能生效。长度限制为1~32个字符，字符不能包括:?”<>｜. Defaults to None.
             parentid (int, optional): 父部门id. Defaults to None.
             order (int, optional): 在父部门中的次序值。order值大的排序靠前。有效的值范围是[0, 2^32). Defaults to None.
 

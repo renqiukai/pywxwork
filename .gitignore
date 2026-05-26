@@ -134,3 +134,5 @@ test*.py
 
 # mac
 .DS_Store
+pywxwork/.DS_Store
+.DS_Store

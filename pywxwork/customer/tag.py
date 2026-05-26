@@ -31,7 +31,7 @@ class tag(base):
         """添加企业客户标签
 
         Args:
-            tag (list): [标签]
+            tag (list): [标签] name/order
             order (int): [标签组次序值。order值大的排序靠前。有效的值范围是[0, 2^32)]
             group_id (int, optional): [标签组id]. Defaults to None.
             group_name (str, optional): [标签组名称，最长为30个字符]. Defaults to None.
